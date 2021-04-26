@@ -15,7 +15,7 @@ public class UserProfile {
 	private String profileid;
     private String fullname;
     private String image;
-    private String emailid;
+    private String email;
     private Long mobilenumber;
     private String about;
     private LocalDate dateOfBirth;
@@ -43,11 +43,11 @@ public class UserProfile {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getEmailid() {
-		return emailid;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmail(String emailid) {
+		this.email = emailid;
 	}
 	public Long getMobilenumber() {
 		return mobilenumber;

@@ -26,12 +26,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
-	public Optional<Product> getByProductid(String id){
-		return productrepository.findById(id);
+	public Product getByProductid(String id){
+		return productrepository.findByproductid(id);
 	}
 	
 	
-	public Optional<Product> getByProductByName(String productName){
+	public Product getByProductByName(String productName){
 		return productrepository.findByproductName(productName);	
 	}
 	

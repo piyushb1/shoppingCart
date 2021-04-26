@@ -77,6 +77,11 @@ public class ProfileServiceImpl implements ProfileService{
 		return profilerepository.existsById(id);
 	}
 
+
+	public UserProfile findByEmail(String email) {
+		return profilerepository.findByemail(email);
+	}
+
 	
 
 }

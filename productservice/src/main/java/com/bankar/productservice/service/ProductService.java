@@ -11,8 +11,8 @@ public interface ProductService {
 	
 	public Product addProduct(Product product);
 	public List<Product> getAllProducts();
-	public Optional<Product> getByProductid(String id);
-	public Optional<Product> getByProductByName(String productName);
+	public Product getByProductid(String id);
+	public Product getByProductByName(String productName);
 	public Product updateProduct(Product product);
 	public boolean existsById(String id);
 	public void deleteProductById(String id);

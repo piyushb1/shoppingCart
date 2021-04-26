@@ -17,6 +17,7 @@ public interface ProfileService {
 	public void deleteProfile(String id);
 	public void addNewMerchantProfile(UserProfile profile);
 	public void addNewDeliveryProfile(UserProfile profile);
+	public UserProfile findByEmail(String email);
 	 public UserProfile findByMobileNo(long mobilenumber);
 	 public List<UserProfile> getByUsername(String fullname);
 

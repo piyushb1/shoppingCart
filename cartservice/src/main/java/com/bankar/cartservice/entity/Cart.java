@@ -29,5 +29,9 @@ public class Cart {
 		
 		return totalPrice;
 	}
+	
+	public void addItem(Items item) {
+		this.items.add(item);
+	}
 
 }

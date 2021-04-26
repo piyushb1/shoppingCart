@@ -3,6 +3,7 @@ package com.bankar.cartservice.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,19 +15,19 @@ import com.bankar.cartservice.entity.Cart;
 import com.bankar.cartservice.entity.Items;
 import com.bankar.cartservice.service.CartService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CartResource {
 	
 	
 	@Autowired
 	private CartService cartService;
+		
 	
 	
-	
-	
-	@PostMapping("/add")
-	public Cart addCart(@RequestBody Cart cart) {
-		return cartService.addCart(cart);
+	@PostMapping("/add/{id}")
+	public Cart addCart(@RequestBody String id) {
+		return cartService.addCart(id);
 	}
 	
 	
@@ -42,9 +43,9 @@ public class CartResource {
 	}
 	
 	
-	@PostMapping("/addItem/{id}")
-	public Cart addItem(@PathVariable String id,@RequestBody Items item) {
-		return cartService.addItem(id,item);
+	@PostMapping("/addItem/{userid}")
+	public Cart addItem(@PathVariable String userid,@RequestBody Items item) {
+		return cartService.addItem(userid,item);
 	}
 	
 	

@@ -11,8 +11,8 @@ import com.bankar.productservice.entity.Product;
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String>{
 	
-	public Product findByproductid(String id);
-	public Optional<Product> findByproductName(String productName);
+	public Product findByproductid(String productid);
+	public Product findByproductName(String productName);
 	public List<Product> findBycategory(String category);
 	public List<Product> findByproductType(String productType);
 	 

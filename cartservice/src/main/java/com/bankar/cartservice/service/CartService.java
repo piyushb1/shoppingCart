@@ -7,7 +7,7 @@ import com.bankar.cartservice.entity.Items;
 
 public interface CartService {
 	
-	public Cart addCart(Cart cart);
+	public Cart addCart(String id);
 	public Cart getcartById(String id);
 	public Cart updateCart(Cart cart);
 	public List<Cart> getallcarts();

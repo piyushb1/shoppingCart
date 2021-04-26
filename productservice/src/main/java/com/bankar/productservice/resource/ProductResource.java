@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankar.productservice.entity.Product;
 import com.bankar.productservice.service.ProductService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProductResource {
 
@@ -36,13 +38,13 @@ public class ProductResource {
 	
 	
 	@RequestMapping("/getId/{id}")
-	public Optional<Product> getByProductid(@PathVariable String id){
+	public Product getByProductid(@PathVariable String id){
 		return productServ.getByProductid(id);
 	}
 	
 	
 	@RequestMapping("/getByName/{productName}")
-	public Optional<Product> getByProductByName(@PathVariable String productName){
+	public Product getByProductByName(@PathVariable String productName){
 		return productServ.getByProductByName(productName);
 	}
 	

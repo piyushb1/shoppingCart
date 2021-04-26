@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.service.ProfileService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProfileResource {
 	
 	@Autowired
-	private ProfileService profileServ;
-	
+	private ProfileService profileServ;	
 	
 	
 	@PostMapping("/create")
@@ -36,7 +37,7 @@ public class ProfileResource {
 	}
 	
 	
-	@RequestMapping("/getId/{id}")
+	@RequestMapping("/getById/{id}")
 	public Optional<UserProfile> getById(@PathVariable String id){
 		return profileServ.getByProfileid(id);
 	}
@@ -67,6 +68,12 @@ public class ProfileResource {
 	@RequestMapping("/getByUsername/{username}")
 	public List<UserProfile> getByUsername(@PathVariable String username){
 		return profileServ.getByUsername(username);
+	}
+	
+	
+	@RequestMapping("/getByEmail/{email}")
+	public UserProfile findByEmail(@PathVariable String email) {
+		return profileServ.findByEmail(email);
 	}
 
 	

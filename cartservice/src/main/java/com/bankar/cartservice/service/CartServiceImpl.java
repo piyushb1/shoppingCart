@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.bankar.cartservice.entity.Cart;
 import com.bankar.cartservice.entity.Items;
+import com.bankar.cartservice.entity.Product;
 import com.bankar.cartservice.repository.CartRepository;
 
 @Service
@@ -15,15 +17,28 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartRepository cartRepository;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+
 	
 	
-	public Cart addCart(Cart cart) {
+	
+	public Cart addCart(String id) {
+		Cart cart = new Cart();
+		cart.setCartid(id);
 		return cartRepository.insert(cart);
 	}
 	
 	
 	public Cart getcartById(String id) {
-		return cartRepository.findBycartid(id);
+		Cart cart = new Cart();
+		if(cartRepository.existsById(id)) {
+			cart = cartRepository.findBycartid(id);
+		}
+		else {
+			cart.setCartid(id);
+		}
+		return cart;
 	}
 	
 	
@@ -41,13 +56,17 @@ public class CartServiceImpl implements CartService {
 		return cart.getTotalPrice();
 	}
 	
-	
-	public Cart addItem(String id,Items item) {		
-		Cart cart = cartRepository.findBycartid(id);
-		List<Items> tempItem = cart.getItems();
-		tempItem.add(item);
-		cart.setItems(tempItem);
-		return cartRepository.save(cart);		
+
+	public Cart addItem(String id, Items item) {
+		Cart cart = new Cart();
+		if(cartRepository.existsById(id)) {
+			cart = cartRepository.findBycartid(id);
+		}
+		else {
+			cart.setCartid(id);
+		}
+		cart.addItem(item);
+		return cartRepository.save(cart);
 	}
 
 	
