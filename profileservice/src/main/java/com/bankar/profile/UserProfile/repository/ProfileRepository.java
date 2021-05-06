@@ -11,6 +11,7 @@ import com.bankar.profile.UserProfile.pojo.UserProfile;
 public interface ProfileRepository extends MongoRepository<UserProfile, String>{
 
 	 public UserProfile findAllBymobilenumber(long mobilenumber);
+	 public UserProfile findByprofileid(String profileid);
 	 public List<UserProfile> findByfullname(String fullname);
 	 public UserProfile findByemail(String email);
 	

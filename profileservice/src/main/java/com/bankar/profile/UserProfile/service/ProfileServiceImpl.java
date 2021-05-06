@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.bankar.profile.UserProfile.exception.NotFoundException;
 import com.bankar.profile.UserProfile.pojo.Role;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.repository.ProfileRepository;
@@ -28,13 +29,15 @@ public class ProfileServiceImpl implements ProfileService{
 	
 	//Find all profiles
 	public List<UserProfile> getAll(){
-		return profilerepository.findAll();
+		List<UserProfile> users = profilerepository.findAll();
+		return users;
 	}
 
 	
 	//Find profile by Id
-	public Optional<UserProfile> getByProfileid(String id) {
-		return profilerepository.findById(id);
+	public UserProfile getByProfileid(String id) {
+		UserProfile user = profilerepository.findByprofileid(id);
+		return user;
 	}
 	
 	

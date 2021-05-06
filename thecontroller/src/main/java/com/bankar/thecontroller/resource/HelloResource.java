@@ -1,4 +1,4 @@
-package com.bankar.thecontroller;
+package com.bankar.thecontroller.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

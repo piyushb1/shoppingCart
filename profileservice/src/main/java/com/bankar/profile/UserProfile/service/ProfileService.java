@@ -11,7 +11,7 @@ public interface ProfileService {
 	
 	public UserProfile addNewCustomerProfile1(@RequestBody UserProfile p);
 	public List<UserProfile> getAll();
-	public Optional<UserProfile> getByProfileid(String id);
+	public UserProfile getByProfileid(String id);
 	public UserProfile updateProfile(UserProfile profile);
 	public boolean existsById(String id);
 	public void deleteProfile(String id);

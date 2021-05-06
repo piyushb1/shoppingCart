@@ -25,6 +25,15 @@ public class UserProfile {
     private Address address;
     
     
+    public UserProfile(String profileid, String email, Long mobilenumber, String password) {
+		super();
+		this.email = email;
+		this.profileid = profileid;
+		this.mobilenumber = mobilenumber;
+		this.password = password;
+	}
+    
+    
 	public String getProfileid() {
 		return profileid;
 	}
@@ -91,7 +100,7 @@ public class UserProfile {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-    
+	
     
     
    

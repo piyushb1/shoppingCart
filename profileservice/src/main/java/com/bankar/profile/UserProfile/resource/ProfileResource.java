@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bankar.profile.UserProfile.exception.NotFoundException;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.service.ProfileService;
 
@@ -38,13 +39,24 @@ public class ProfileResource {
 	
 	
 	@RequestMapping("/getById/{id}")
-	public Optional<UserProfile> getById(@PathVariable String id){
-		return profileServ.getByProfileid(id);
+	public UserProfile getById(@PathVariable String id){
+		
+		if(id==null) {
+			throw new NotFoundException("No user found");
+		}
+		
+		UserProfile user =  profileServ.getByProfileid(id);
+		if(user==null) {
+			throw new NotFoundException("No user found");
+		}else {
+			return user;
+		}
 	}
 	
 	
 	@PutMapping("/update/{id}")
 	public UserProfile updateProfile(@PathVariable String id,@RequestBody UserProfile profile){
+		
 		if(profileServ.existsById(id)) {
 			return profileServ.updateProfile(profile);
 		}
