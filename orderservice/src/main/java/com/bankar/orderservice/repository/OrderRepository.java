@@ -10,7 +10,7 @@ import com.bankar.orderservice.models.Orders;
 public interface OrderRepository extends MongoRepository<Orders,String> {
 	
 	public Orders findByOrderid(String orderid);
-	public List<Orders> findByCustomerid(String customerid);
+	public List<Orders> findByProfileid(String profileid);
 	public Orders findFirstByOrderByOrderidDesc(int customerid);
 
 }

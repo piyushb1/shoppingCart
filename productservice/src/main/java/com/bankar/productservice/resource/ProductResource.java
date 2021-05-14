@@ -1,16 +1,14 @@
 package com.bankar.productservice.resource;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bankar.productservice.entity.Product;
@@ -31,19 +29,19 @@ public class ProductResource {
 	}
 	
 	
-	@RequestMapping("/getAll")
+	@GetMapping("/getAll")
 	public List<Product> getAll(){
 		return productServ.getAllProducts();
 	}
 	
 	
-	@RequestMapping("/getId/{id}")
+	@GetMapping("/getId/{id}")
 	public Product getByProductid(@PathVariable String id){
 		return productServ.getByProductid(id);
 	}
 	
 	
-	@RequestMapping("/getByName/{productName}")
+	@GetMapping("/getByName/{productName}")
 	public Product getByProductByName(@PathVariable String productName){
 		return productServ.getByProductByName(productName);
 	}
@@ -58,7 +56,7 @@ public class ProductResource {
 	}
 
 	
-	@PutMapping("/ratings/{id}")
+	@PutMapping("/ratings/{productid}")
 	public Product rate(@PathVariable String productid,@RequestBody String profileid,@RequestBody Double rating) {
 		return productServ.rating(productid,profileid,rating);
 	}
@@ -72,13 +70,13 @@ public class ProductResource {
 	}
 	
 	
-	@RequestMapping("/getByCategory/{category}")
+	@GetMapping("/getByCategory/{category}")
 	public List<Product> getByProductByCategory(@PathVariable String category) {
 		return productServ.getByProductByCategory(category);
 	}
 	
 	
-	@RequestMapping("/getByType/{productType}")
+	@GetMapping("/getByType/{productType}")
 	public List<Product> getByProductByType(@PathVariable String productType) {
 		return productServ.getByProductByType(productType);
 	}

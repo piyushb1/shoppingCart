@@ -13,6 +13,7 @@ public interface CartService {
 	public List<Cart> getallcarts();
 	public double cartTotal(Cart cart);
 	public Cart addItem(String id,Items item);
+	public Cart removeItem(String cartid, Items item);
 	
 
 }

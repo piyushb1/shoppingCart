@@ -3,7 +3,9 @@ package com.bankar.orderservice.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +19,7 @@ import com.bankar.orderservice.models.Orders;
 import com.bankar.orderservice.service.OrderService;
 
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class OrderResource {
 	
@@ -24,29 +27,33 @@ public class OrderResource {
 	
 	
 	
-	@RequestMapping("/getAll")
+	@GetMapping("/getAll")
 	public List<Orders> getAllOrders() {
 		return orderService.getAllOrders();
 	}
 	
 	
-	@RequestMapping("/getAlla")
+	@GetMapping("/getAlla")
 	public List<Address> getAllAddress() {
 		return orderService.getAllAddress();
 	}
 	
 	
-	@RequestMapping("/getoBycust/{customerid}")
-	public List<Orders> getOrderByCustomerId(@PathVariable String customerid) {
-		return orderService.getOrderByCustomerId(customerid);
+	@GetMapping("/getoBycust/{profileid}")
+	public List<Orders> getOrderByProfileid(@PathVariable String profileid) {
+		return orderService.getOrderByProfileid(profileid);
 	}
 	
 	
-	@RequestMapping("/getaBycust/{customerid}")
-	public List<Address> getAddressByCustomerId(@PathVariable String customerid) {
-		return orderService.getAddressByCustomerId(customerid);
+	@GetMapping("/getaBycust/{profileid}")
+	public List<Address> getAddressByProfileid(@PathVariable String profileid) {
+		return orderService.getAddressByProfileid(profileid);
 	}
 	
+	@GetMapping("/getorderid/{orderid}")
+	public Orders getOrderByid(@PathVariable String orderid) {
+		return orderService.getOrderByid(orderid);
+	}
 	
 //	@RequestMapping("/getmaxbyid")
 //	public Orders getMAXByOrderId(@PathVariable String customerid) {

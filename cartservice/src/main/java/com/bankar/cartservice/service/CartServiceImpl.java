@@ -68,6 +68,14 @@ public class CartServiceImpl implements CartService {
 		cart.addItem(item);
 		return cartRepository.save(cart);
 	}
+	
+	public Cart removeItem(String cartid, Items item) {
+		Cart cart = new Cart();
+		cart = cartRepository.findBycartid(cartid);
+		
+		cart.removeItems(item.getProductid());
+		return cartRepository.save(cart);
+	}
 
 	
 

@@ -55,6 +55,13 @@ public class CartResource {
 	}
 	
 	
+	@PostMapping("/removeitem/{cartid}")
+	public void removeItem(@PathVariable String cartid,@RequestBody Items item) {
+		
+		cartService.removeItem(cartid, item);
+		
+	}
+	
 	
 
 }

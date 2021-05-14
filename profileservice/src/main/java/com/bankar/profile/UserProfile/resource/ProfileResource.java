@@ -1,16 +1,13 @@
 package com.bankar.profile.UserProfile.resource;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,13 +29,13 @@ public class ProfileResource {
 	}
 		
 	
-	@RequestMapping("/getAll")
+	@GetMapping("/getAll")
 	public List<UserProfile> getAll(){
 		return profileServ.getAll();
 	}
 	
 	
-	@RequestMapping("/getById/{id}")
+	@GetMapping("/getById/{id}")
 	public UserProfile getById(@PathVariable String id){
 		
 		if(id==null) {
@@ -71,19 +68,19 @@ public class ProfileResource {
 	}
 	
 	
-	@RequestMapping("/getByPhone/{phno}")
+	@GetMapping("/getByPhone/{phno}")
 	public UserProfile getByPhoneNumber(@PathVariable Long phno){
 		return profileServ.findByMobileNo(phno);
 	}
 	
 	
-	@RequestMapping("/getByUsername/{username}")
+	@GetMapping("/getByUsername/{username}")
 	public List<UserProfile> getByUsername(@PathVariable String username){
 		return profileServ.getByUsername(username);
 	}
 	
 	
-	@RequestMapping("/getByEmail/{email}")
+	@GetMapping("/getByEmail/{email}")
 	public UserProfile findByEmail(@PathVariable String email) {
 		return profileServ.findByEmail(email);
 	}

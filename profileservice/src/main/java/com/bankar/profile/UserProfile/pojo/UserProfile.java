@@ -21,7 +21,7 @@ public class UserProfile {
     private LocalDate dateOfBirth;
     private String gender;
     private String role;
-    @ToString.Exclude private String password;
+    private String password;
     private Address address;
     
     

@@ -58,7 +58,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	httpSecurity.csrf().disable()
 	.cors().disable()
 	.authorizeRequests()
-	.antMatchers("/authenticate").permitAll()
+	.antMatchers("/authenticate","/create","/swagger-ui/**",
+			"/v2/api-docs",
+			"/v3/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**").permitAll()
 	.anyRequest().authenticated().and().sessionManagement()
 	.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

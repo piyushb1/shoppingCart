@@ -12,11 +12,12 @@ public interface OrderService {
 	public Orders placeOrder(Cart cart);
 	public String changeStatus(String staus, String id);
 	public void deleteOrder(String id);
-	public List<Orders> getOrderByCustomerId(String id);
+	public List<Orders> getOrderByProfileid(String profileid);
 	public void storeAddress(Address address);
-	public List<Address> getAddressByCustomerId(String id);
+	public List<Address> getAddressByProfileid(String profileid);
 	public List<Address> getAllAddress();
 	public Orders getOrderById(String id);
 	public void onlinePayment(Cart cart);
+	public Orders getOrderByid(String orderid);
 	
 }

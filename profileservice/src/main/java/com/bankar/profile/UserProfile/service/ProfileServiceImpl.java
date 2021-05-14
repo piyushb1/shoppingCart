@@ -43,8 +43,14 @@ public class ProfileServiceImpl implements ProfileService{
 	
 	//Update profile by id
 	public UserProfile updateProfile(@RequestBody UserProfile profile) {
-		profilerepository.save(profile);
-		return profile;
+		UserProfile user = profilerepository.findByprofileid(profile.getProfileid());
+		user.setFullname(profile.getFullname());
+		user.setEmail(profile.getEmail());
+		user.setGender(profile.getGender());
+		user.setMobilenumber(profile.getMobilenumber());
+		user.setAbout(profile.getAbout());
+		profilerepository.save(user);
+		return user;
 	}
 	
 	

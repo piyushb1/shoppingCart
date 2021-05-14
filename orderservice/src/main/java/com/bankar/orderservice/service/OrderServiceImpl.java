@@ -30,13 +30,20 @@ public class OrderServiceImpl implements OrderService{
 	public Orders placeOrder(Cart cart) {
 		Orders order = new Orders();
 		
+		order.setProfileid(cart.getCartid());
 		order.setOrderDate(LocalDate.now());
 		order.setAmmountPaid(cart.getTotalPrice());
+		order.setOrderStatus("Active");
 		List<Items> tempItem = cart.getItems();
 		order.setQuantity(tempItem.size());
+		order.setItems(tempItem);
 		
 		orderrepository.insert(order);
 		return order;
+	}
+	
+	public Orders getOrderByid(String orderid) {
+		return orderrepository.findByOrderid(orderid);
 	}
 
 
@@ -53,8 +60,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
-	public List<Orders> getOrderByCustomerId(String customerid) {
-		return orderrepository.findByCustomerid(customerid);
+	public List<Orders> getOrderByProfileid(String profileid) {
+		return orderrepository.findByProfileid(profileid);
 	}
 
 
@@ -63,8 +70,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
-	public List<Address> getAddressByCustomerId(String customerid) {
-		return addressrepository.findAllByCustomerid(customerid);
+	public List<Address> getAddressByProfileid(String profileid) {
+		return addressrepository.findAllByCustomerid(profileid);
 	}
 
 

@@ -2,11 +2,13 @@ package com.bankar.thecontroller.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +22,14 @@ import com.bankar.thecontroller.services.MyUserDetailsService;
 import com.bankar.thecontroller.services.UserService;
 import com.bankar.thecontroller.util.JwtUtil;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class HelloResource {
+@Api( tags = "Clients")
+public class AuthResource {
 	
 	
 
@@ -39,21 +45,14 @@ public class HelloResource {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping({ "/hello" })
+	@PreAuthorize("hasAuthority('admin')")
+	@GetMapping({ "/hello" })
 	public String firstPage() {
 		return "Hello World";
 	}
 	
-	@RequestMapping({ "/profile" })
-	public String profile() {
-		return "My profile";
-	}
 	
-	@RequestMapping({ "/product" })
-	public String product() {
-		return "Everyone";
-	}
-
+	@ApiOperation(value = "This method is used to get the clients.")
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
