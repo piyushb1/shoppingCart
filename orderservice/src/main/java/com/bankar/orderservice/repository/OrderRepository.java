@@ -12,5 +12,6 @@ public interface OrderRepository extends MongoRepository<Orders,String> {
 	public Orders findByOrderid(String orderid);
 	public List<Orders> findByProfileid(String profileid);
 	public Orders findFirstByOrderByOrderidDesc(int customerid);
+	public List<Orders> findAllByProfileid(String profileid);
 
 }

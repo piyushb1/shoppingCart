@@ -9,7 +9,7 @@ import com.bankar.orderservice.models.Orders;
 public interface OrderService {
 	
 	public List<Orders> getAllOrders();
-	public Orders placeOrder(Cart cart);
+	public Orders placeOrder(Orders order);
 	public String changeStatus(String staus, String id);
 	public void deleteOrder(String id);
 	public List<Orders> getOrderByProfileid(String profileid);

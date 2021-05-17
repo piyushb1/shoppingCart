@@ -33,10 +33,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(myUserDetailsService);
-//		auth.inMemoryAuthentication()
-//			.withUser("blah")
-//			.password("blah")
-//			.roles("user");
+
 	}
 	
 	
@@ -64,6 +61,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
             "/configuration/ui",
             "/swagger-resources/**",
             "/configuration/security",
+            "/getAll",
             "/swagger-ui.html",
             "/webjars/**").permitAll()
 	.anyRequest().authenticated().and().sessionManagement()

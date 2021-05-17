@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bankar.productservice.entity.ListProduct;
 import com.bankar.productservice.entity.Product;
 import com.bankar.productservice.service.ProductService;
 
@@ -30,8 +31,10 @@ public class ProductResource {
 	
 	
 	@GetMapping("/getAll")
-	public List<Product> getAll(){
-		return productServ.getAllProducts();
+	public ListProduct getAll(){
+		ListProduct listproduct = new ListProduct();
+		listproduct.setListproduct(productServ.getAllProducts());
+		return listproduct;
 	}
 	
 	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bankar.orderservice.models.Address;
 import com.bankar.orderservice.models.Cart;
+import com.bankar.orderservice.models.ListOrder;
 import com.bankar.orderservice.models.Orders;
 import com.bankar.orderservice.service.OrderService;
 
@@ -28,8 +29,10 @@ public class OrderResource {
 	
 	
 	@GetMapping("/getAll")
-	public List<Orders> getAllOrders() {
-		return orderService.getAllOrders();
+	public ListOrder getAllOrders() {
+		ListOrder listorders = new ListOrder();
+		listorders.setListOrder(orderService.getAllOrders());
+		return listorders;
 	}
 	
 	
@@ -62,8 +65,8 @@ public class OrderResource {
 	
 	
 	@PostMapping("/placeOrder")
-	public Orders placeOrder(@RequestBody Cart cart) {
-		return orderService.placeOrder(cart);
+	public Orders placeOrder(@RequestBody Orders order) {
+		return orderService.placeOrder(order);
 	}
 	
 

@@ -21,7 +21,5 @@ public class MyUserDetailsService implements UserDetailsService {
     	MyUserDetails myUserDetails = new MyUserDetails(user);
     	return myUserDetails;
 
-//        return new User("foo", "foo",
-//                new ArrayList<>());
     }
 }

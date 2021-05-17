@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 .App {
   text-align: center;
 }
@@ -150,7 +151,7 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
   margin: 0 8px;
-  color: #fff;
+  color: #fff; 
   opacity: 0.75;
 }
 

@@ -2,18 +2,30 @@ import axios from 'axios';
 
 const USER_API = "http://localhost:8093/";
 
+const headers = {
+    'Authorization': 'Bearer '+localStorage.jwtToken
+};
+
 class ProductService {
 
     getProducts(){
-        return axios.get(USER_API + 'getAll');
+        console.log('headers => ' + JSON.stringify(headers));
+
+        return axios.get("http://localhost:8099/getAll");
     }
 
     createProduct(product){
         return axios.post(USER_API+ 'create' , product);
     }
 
-    getProductById(productId){
+    async getProductById(productId){
         return axios.get(USER_API + 'getId/' + productId);
+        // const res = await axios.get( "http://localhost:8093/getId/" + productId, {
+        //     headers: {
+        //         'Authorization': 'Bearer ' + localStorage.jwtToken
+        //     }
+        // });
+        // return console.log('product => ' + JSON.stringify(res.data));
     }
 
     updateProduct(product, productId){

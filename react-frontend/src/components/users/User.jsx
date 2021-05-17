@@ -1,42 +1,78 @@
 import React, { Component } from 'react'
-import EmployeeService from '../../services/EmployeeService';
 import UserService from '../../services/UserService';
-
 
 class User extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-                employees: []
+                employees: [],
+                email: '',
+                name:'',
+                mobilenumber:'',
+                gender:'',
+                about:'',
+                user:[]
         }
-        this.addEmployee = this.addEmployee.bind(this);
-        this.editEmployee = this.editEmployee.bind(this);
-        this.deleteEmployee = this.deleteEmployee.bind(this);
-        this.logout = this.logout.bind(this);
+        
+        this.changeNameHandler = this.changeNameHandler.bind(this);
+        this.changeGenderHandler = this.changeGenderHandler.bind(this);
+        this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changeMobileHandler = this.changeMobileHandler.bind(this);
+        this.changeAbout = this.changeAbout.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     }
 
-    deleteEmployee(id){
-        EmployeeService.deleteEmployee(id).then( res => {
-            this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
-        });
-    }
-    viewEmployee(id){
-        this.props.history.push(`/view-employee/${id}`);
-    }
-    editEmployee(id){
-        this.props.history.push(`/add-employee/${id}`);
+
+     
+    updateUser = (e) => {
+
+        e.preventDefault();
+        let user = {email: this.state.email, gender: this.state.gender, mobilenumber: this.state.mobilenumber,
+             fullname: this.state.name, profileid: localStorage.userid, about: this.state.about};
+        console.log('user => ' + JSON.stringify(user));
+
+        
+        UserService.updateUser(user).then(res =>{
+                console.log('response => ' + JSON.stringify(res));
+               
+                this.props.history.push('/user');
+            })
+
+            
     }
 
-    logout(){
-        localStorage.removeItem('jwtToken');
-        localStorage.removeItem('role');
-        this.props.history.push('/users/login');
+
+    changeNameHandler= (event) => {
+        this.setState({name: event.target.value});
+    }
+
+    changeGenderHandler= (event) => {
+        this.setState({gender: event.target.value});
+    }
+    
+    changeEmailHandler= (event) => {
+        this.setState({email: event.target.value});
+    }
+
+    changeMobileHandler= (event) => {
+        this.setState({mobilenumber: event.target.value});
+    }
+
+    changeAbout= (event) => {
+        this.setState({about: event.target.value});
     }
 
     componentDidMount(){
-        UserService.getUsers().then((res) => {
-            this.setState({ employees: res.data});
+             
+        UserService.getUserById(localStorage.userid).then((res) => {
+            console.log('user => ' + JSON.stringify(res.data));
+            this.setState({ user: res.data});
+            this.setState({name: this.state.user.fullname})
+            this.setState({mobilenumber: this.state.user.mobilenumber})
+            this.setState({email: this.state.user.email})
+            this.setState({gender: this.state.user.gender})
+            this.setState({about:this.state.user.about})
         });
     }
 
@@ -47,46 +83,39 @@ class User extends Component {
     render() {
         return (
             <div>
-                 <h2 className="text-center">Employees List</h2>
-                 <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addEmployee}> Signup</button>
-                 </div>
+                 <h2 className="text-center">My Profile</h2>
                  <br></br>
-                 <div className = "row">
-                        <table className = "table table-striped table-bordered">
 
-                            <thead>
-                                <tr>
-                                    <th> Employee First Name</th>
-                                    <th> DOB</th>
-                                    <th> Gender</th>
-                                    <th> Email</th>
-                                    <th> Price</th>
-                                    <th> Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.employees.map(
-                                        user => 
-                                        <tr key = {user.profileid}>
-                                             <td> { user.fullname} </td>   
-                                             <td> {user.dateOfBirth}</td>
-                                             <td> {user.gender}</td>
-                                             <td> {user.email}</td>
-                                             <td>
-                                                 <button onClick={ () => this.editEmployee(user.id)} className="btn btn-info">Update </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(user.id)} className="btn btn-danger">Delete </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(user.id)} className="btn btn-info">View </button>
-                                             </td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </table>
-                        <button className="btn btn-danger" onClick={this.logout}>Logout</button>
+                        <form id="contact-form" style={{width:"800px"}} >
+                            <div>
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input placeholder="Enter Name" type="text" name="firstName" className="form-control" 
+                                                value={this.state.name} onChange={this.changeNameHandler}/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Email address</label>
+                                <input type="email" className="form-control"  value={this.state.email} onChange={this.changeEmailHandler} aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Gender</label>
+                                <input  className="form-control" placeholder="Enter Gender" type="text" name="lastName"
+                                                value={this.state.gender} onChange={this.changeGenderHandler} aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Contact</label>
+                                <input  className="form-control"  placeholder="Enter Contact" type="number" name="firstName"  
+                                                value={this.state.mobilenumber} onChange={this.changeMobileHandler} aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">About</label>
+                                <textarea className="form-control"  placeholder="About yourself" type="text" name="about"  
+                                                value={this.state.about} onChange={this.changeAbout} aria-describedby="emailHelp" rows="2"></textarea>
+                            </div>
+                            <button type="submit" onClick={this.updateUser} className="btn btn-primary">Update</button>
+                            </div>
+                        </form>
 
-                 </div>
 
             </div>
         )

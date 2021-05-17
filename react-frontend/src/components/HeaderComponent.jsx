@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
-
+import { Link } from "react-router-dom";
 
 class HeaderComponent extends Component {
     constructor(props) {
@@ -41,35 +41,33 @@ class HeaderComponent extends Component {
 
 		
         return (
-            <div class="d-flex justify-content-center">
-            <Navbar bg="dark" variant="dark" expand="lg" style={{ width: 1600 }}>
-				<Navbar.Brand href="/">Store Bazaar</Navbar.Brand>
+            <div class="d-flex justify-content-center" style={{backgroundColor: "#84a98c" }}>
+            <Navbar expand="lg" style={{ width: 1600 }}>
+				<Navbar.Brand href="/home">Store Bazaar</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mr-auto">
-						{/* <Nav.Link href="/">Mobile Store</Nav.Link> */}
-						{/* <Nav.Link href="#link">Link</Nav.Link> */}
-						{/* <NavDropdown title="Categories" id="basic-nav-dropdown">
-							<NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-						</NavDropdown> */}
-						{/* <Form inline>
-							<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-							<Button variant="outline-success">Search</Button>
-					</Form> */}
+					
 					</Nav>
 										
 					{isLoggedIn ? 
-					<Button className="btn" href="/cart">{isLoggedIn ? 'Cart' : ''}</Button > : 
+					 <Link to="/cart" className="ml-auto">
+					 <Button>
+					   <span className="mr-2">
+						 <i className="fas fa-cart-plus " />
+					   </span>
+					   my cart
+					 </Button>
+				   </Link> : 
 						<Button className="btn btn-success" href="/login">{isLoggedIn ? '' : 'Login'}</Button >
 					}					
 					{isLoggedIn ? 
 					<NavDropdown title="My Account" id="basic-nav-dropdown">
-						<NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">My Orders</NavDropdown.Item>
+						<NavDropdown.Item href="/user">My Profile</NavDropdown.Item>
+						<NavDropdown.Item href="/myorders">My Orders</NavDropdown.Item>
+						{this.isAdmin ? 
+							<NavDropdown.Item href="/allorders">All Orders</NavDropdown.Item> : ' '
+						}	
 						{this.isAdmin ? 
 							<NavDropdown.Item href="/products">All Products</NavDropdown.Item> : ' '
 						}	
@@ -82,6 +80,14 @@ class HeaderComponent extends Component {
 					 : ''}
 				</Navbar.Collapse>
 			</Navbar>
+
+
+
+			<div>
+
+				
+			</div>
+			
             </div>
         )
     }

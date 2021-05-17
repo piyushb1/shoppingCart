@@ -56,7 +56,7 @@ class ListUsers extends Component {
 
                             <thead>
                                 <tr>
-                                    <th> Employee First Name</th>
+                                    <th> Users First Name</th>
                                     <th> DOB</th>
                                     <th> Gender</th>
                                     <th> Email</th>

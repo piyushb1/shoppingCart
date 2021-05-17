@@ -1,55 +1,84 @@
 import React, { Component } from 'react'
 
 class FooterComponent extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-                 
-        }
-    }
-
+  
     render() {
-        return (
-
-<div class="footer">
-<body>
-    <div class="footer-dark">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                    </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                </div>
-                <p class="copyright">Company Name © 2018</p>
+       
+       return (
+        <footer style={{backgroundColor: "#adb5bd"}} class="section-footer border-top bg">
+        <div class="container">
+            <section class="footer-top  padding-y">
+            <div class="row">
+                <aside class="col-md col-6">
+                <h6 class="title">Brands</h6>
+                <ul class="list-unstyled">
+                    <li> <a href="#">Adidas</a></li>
+                    <li> <a href="#">Puma</a></li>
+                    <li> <a href="#">Reebok</a></li>
+                    <li> <a href="#">Nike</a></li>
+                </ul>
+                </aside>
+                <aside class="col-md col-6">
+                <h6 class="title">Company</h6>
+                <ul class="list-unstyled">
+                    <li> <a href="#">About us</a></li>
+                    <li> <a href="#">Career</a></li>
+                    <li> <a href="#">Find a store</a></li>
+                    <li> <a href="#">Rules and terms</a></li>
+                    <li> <a href="#">Sitemap</a></li>
+                </ul>
+                </aside>
+                <aside class="col-md col-6">
+                <h6 class="title">Help</h6>
+                <ul class="list-unstyled">
+                    <li> <a href="#">Contact us</a></li>
+                    <li> <a href="#">Money refund</a></li>
+                    <li> <a href="#">Order status</a></li>
+                    <li> <a href="#">Shipping info</a></li>
+                    <li> <a href="#">Open dispute</a></li>
+                </ul>
+                </aside>
+                <aside class="col-md col-6">
+                <h6 class="title">Account</h6>
+                <ul class="list-unstyled">
+                    <li> <a href="#"> User Login </a></li>
+                    <li> <a href="#"> User register </a></li>
+                    <li> <a href="#"> Account Setting </a></li>
+                    <li> <a href="#"> My Orders </a></li>
+                </ul>
+                </aside>
+                <aside class="col-md">
+                <h6 class="title">Social</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                    <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
+                    <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                    <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                </ul>
+                </aside>
+            </div> 
+            </section>  
+            <section class="footer-bottom row">
+            <div class="col-md-2">
+                <p class="text-muted">   2021 Company name </p>
             </div>
+            <div class="col-md-8 text-md-center">
+                <span  class="px-2">info@com</span>
+                <span  class="px-2">+000-000-0000</span>
+                <span  class="px-2">Street name 123, ABC</span>
+            </div>
+            <div class="col-md-2 text-md-right text-muted">
+                <i class="fab fa-lg fa-cc-visa"></i> 
+                <i class="fab fa-lg fa-cc-paypal"></i> 
+                <i class="fab fa-lg fa-cc-mastercard"></i>
+            </div>
+            </section>
+        </div>
         </footer>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-</body>
-</div>
-        )
+       
+       
+       
+       )
+      }
     }
-}
-
-export default FooterComponent
+export default FooterComponent;

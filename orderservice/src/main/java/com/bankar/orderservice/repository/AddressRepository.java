@@ -10,6 +10,6 @@ import com.bankar.orderservice.models.Address;
 @Repository
 public interface AddressRepository extends MongoRepository<Address, Object>{
 	
-	public List<Address> findAllByCustomerid(String customerid);
+	public List<Address> findAllByProfileid(String profileid);
 
 }

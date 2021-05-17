@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bankar.profile.UserProfile.exception.NotFoundException;
+import com.bankar.profile.UserProfile.pojo.ListProfile;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.service.ProfileService;
 
@@ -30,8 +31,10 @@ public class ProfileResource {
 		
 	
 	@GetMapping("/getAll")
-	public List<UserProfile> getAll(){
-		return profileServ.getAll();
+	public ListProfile getAll(){
+		ListProfile listprofile = new ListProfile();
+		listprofile.setListproduct(profileServ.getAll());
+		return listprofile;
 	}
 	
 	

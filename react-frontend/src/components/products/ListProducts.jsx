@@ -47,7 +47,7 @@ class ListUsers extends Component {
             <div>
                  <h2 className="text-center">Products</h2>
                  <div className = "row">
-                    <button className="btn btn-primary"  href="/addproduct"> Add Product</button>
+                    <button className="btn btn-primary"  onClick={ () => this.addProduct()}> Add Product</button>
                  </div>
                  <br></br>
                  <div className = "row">
