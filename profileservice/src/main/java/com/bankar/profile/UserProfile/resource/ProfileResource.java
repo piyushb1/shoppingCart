@@ -41,13 +41,9 @@ public class ProfileResource {
 	@GetMapping("/getById/{id}")
 	public UserProfile getById(@PathVariable String id){
 		
-		if(id==null) {
-			throw new NotFoundException("No user found");
-		}
-		
 		UserProfile user =  profileServ.getByProfileid(id);
 		if(user==null) {
-			throw new NotFoundException("No user found");
+			throw new NotFoundException("No user found for id = "+id);
 		}else {
 			return user;
 		}

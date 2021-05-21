@@ -1,4 +1,4 @@
-package com.bankar.profile.UserProfile.exception;
+package com.bankar.cartservice.exception;
 
 import java.time.ZonedDateTime;
 import org.springframework.http.HttpHeaders;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import com.bankar.profile.UserProfile.pojo.ErrorMesssage;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -59,11 +57,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		
+
 		ErrorMesssage error = new ErrorMesssage	(ex.getMessage(),
 				HttpStatus.BAD_REQUEST,
 				ZonedDateTime.now());
-
+		
 		return new ResponseEntity<Object>(error,HttpStatus.NOT_FOUND);
 	}
 

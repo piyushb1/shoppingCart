@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bankar.productservice.entity.ListProduct;
 import com.bankar.productservice.entity.Product;
+import com.bankar.productservice.exception.NotFoundException;
 import com.bankar.productservice.service.ProductService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -40,6 +41,12 @@ public class ProductResource {
 	
 	@GetMapping("/getId/{id}")
 	public Product getByProductid(@PathVariable String id){
+		
+		Product product = productServ.getByProductid(id);
+		
+		if(product==null)
+			throw new NotFoundException("No product found for id = "+id);
+		
 		return productServ.getByProductid(id);
 	}
 	

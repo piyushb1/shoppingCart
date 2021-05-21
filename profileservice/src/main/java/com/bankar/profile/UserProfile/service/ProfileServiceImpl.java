@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.bankar.profile.UserProfile.exception.NotFoundException;
 import com.bankar.profile.UserProfile.pojo.Role;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.repository.ProfileRepository;

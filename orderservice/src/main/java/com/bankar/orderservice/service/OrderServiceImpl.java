@@ -6,12 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bankar.orderservice.models.Items;
+import com.bankar.orderservice.exception.ExceptionError;
+import com.bankar.orderservice.exception.NotFoundException;
 import com.bankar.orderservice.models.Address;
 import com.bankar.orderservice.models.Cart;
+import com.bankar.orderservice.models.Items;
 import com.bankar.orderservice.models.Orders;
-import com.bankar.orderservice.repository.OrderRepository;
 import com.bankar.orderservice.repository.AddressRepository;
+import com.bankar.orderservice.repository.OrderRepository;
 
 
 @Service
@@ -44,7 +46,15 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	public Orders getOrderByid(String orderid) {
-		return orderrepository.findByOrderid(orderid);
+		
+		Orders orders1 = orderrepository.findByOrderid(orderid);
+		
+		if(orders1!=null) {
+			return orderrepository.findByOrderid(orderid);			
+		}
+		else {
+			throw new NotFoundException("Order with id = '"+orderid+"' does not exist");
+		}
 	}
 
 
@@ -57,11 +67,18 @@ public class OrderServiceImpl implements OrderService{
 
 
 	public void deleteOrder(String id) {
+		if(!orderrepository.existsById(id))
+			throw new NotFoundException("Order with id = '"+id+"' does not exist");
 		orderrepository.deleteById(id);
 	}
 
 
 	public List<Orders> getOrderByProfileid(String profileid) {
+		List<Orders> listorder = orderrepository.findAllByProfileid(profileid);
+		
+		if(listorder==null)
+			throw new NotFoundException("Profile with id = '"+profileid+"' does not have any orders");
+		
 		return orderrepository.findAllByProfileid(profileid);
 	}
 

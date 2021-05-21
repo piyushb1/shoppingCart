@@ -1,4 +1,4 @@
-package com.bankar.profile.UserProfile.exception;
+package com.bankar.productservice.exception;
 
 import java.time.ZonedDateTime;
 import org.springframework.http.HttpHeaders;
@@ -7,11 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import com.bankar.profile.UserProfile.pojo.ErrorMesssage;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -20,6 +19,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ErrorMesssage> handleAllExceptions(Exception ex, WebRequest request) {
+		ErrorMesssage exceptionResponse = new ErrorMesssage( ex.getMessage(),HttpStatus.NOT_FOUND, ZonedDateTime.now());
+	    return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	 }
+	
+	
+	@ExceptionHandler(Forbidden.class)
+	public final ResponseEntity<ErrorMesssage> handleAllExceptions(Forbidden ex, WebRequest request) {
 		ErrorMesssage exceptionResponse = new ErrorMesssage( ex.getMessage(),HttpStatus.NOT_FOUND, ZonedDateTime.now());
 	    return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	 }
@@ -43,13 +49,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
+	
 	@Override
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 
-		ErrorMesssage error = new ErrorMesssage	(ex.getMessage(),
-												HttpStatus.NOT_FOUND,
-												ZonedDateTime.now());
+		ErrorMesssage error = new ErrorMesssage(ex.getMessage(),
+				HttpStatus.BAD_REQUEST,
+				ZonedDateTime.now());
 		
 		return new ResponseEntity<Object>(error,HttpStatus.NOT_FOUND);
 	}
