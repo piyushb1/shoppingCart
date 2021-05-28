@@ -22,6 +22,7 @@ import Address from './components/orders/Address';
 import UpdateForm from './components/users/UpdateForm';
 import LandingPage from './components/LandingPage';
 import NotFound from './components/NotFound';
+import Paypal from '../src/components/orders/PayPal'
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
     <div style={{backgroundColor: "#edf6f9" }}>
         <Router>
               <HeaderComponent />
-                <div className="container" style={{backgroundColor: "#edf6f9" }} >
+                <div className="container" style={{backgroundColor: "#edf6f9",padding: "30px" }} >
                     <Switch> 
                           <Route path = "/" exact component = {Main}></Route>
                           <Route path = "/home" exact component = {Home}></Route>
@@ -48,6 +49,7 @@ function App() {
                           <Route path = "/myorders" exact component = {MyOrders}></Route>                          
                           <Route path = "/order/:id" exact component = {Order}></Route>
                           <Route path = "/allorders" exact component = {AllOrders}></Route>
+                          <Route path = "/paypal" exact component = {Paypal}></Route>
                           <Route path = "/address" exact component = {Address}></Route>
 
                           <Route component={NotFound} />

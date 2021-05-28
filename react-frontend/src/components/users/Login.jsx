@@ -46,7 +46,7 @@ class Login extends Component {
                 let userid =res.data.userid;
                 localStorage.setItem('userid',userid);
 
-                this.props.history.push('/');
+                this.props.history.push('/home');
             });
     }
     

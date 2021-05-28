@@ -50,7 +50,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 
-		ExceptionError error = new ExceptionError(HttpStatus.NOT_FOUND.toString(),request.getDescription(false),ex.getLocalizedMessage());
+		ExceptionError error = new ExceptionError(status.toString(),request.getDescription(false),ex.getLocalizedMessage());
 		
 		return new ResponseEntity<Object>(error,HttpStatus.NOT_FOUND);
 	}

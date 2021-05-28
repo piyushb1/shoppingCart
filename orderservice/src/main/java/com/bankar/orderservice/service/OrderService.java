@@ -16,7 +16,6 @@ public interface OrderService {
 	public void storeAddress(Address address);
 	public List<Address> getAddressByProfileid(String profileid);
 	public List<Address> getAllAddress();
-	public Orders getOrderById(String id);
 	public void onlinePayment(Cart cart);
 	public Orders getOrderByid(String orderid);
 	

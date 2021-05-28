@@ -5,7 +5,7 @@ class FooterComponent extends Component {
     render() {
        
        return (
-        <footer style={{backgroundColor: "#adb5bd"}} class="section-footer border-top bg">
+        <footer style={{backgroundColor: "#adb5bd" ,padding: "30px" }} class="section-footer border-top bg">
         <div class="container">
             <section class="footer-top  padding-y">
             <div class="row">

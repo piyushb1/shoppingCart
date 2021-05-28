@@ -40,6 +40,7 @@ public class OrderServiceImpl implements OrderService{
 		order.setQuantity(tempItem.size());
 		order.setItems(tempItem);
 		order.setAddress(orderinput.getAddress());
+		order.setModeOfPayment(orderinput.getModeOfPayment());
 		
 		orderrepository.insert(order);
 		return order;
@@ -95,11 +96,6 @@ public class OrderServiceImpl implements OrderService{
 
 	public List<Address> getAllAddress() {
 		return addressrepository.findAll();
-	}
-
-
-	public Orders getOrderById(String id) {
-		return orderrepository.findByOrderid(id);
 	}
 
 

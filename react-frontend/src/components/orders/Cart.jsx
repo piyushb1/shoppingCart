@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import CartService from '../../services/CartService';
-import OrderService from '../../services/OrderService';
 import '../css/DetailsC.css'
 import '../css/Cart.css'
 
 class Cart extends Component {
+
+    
     constructor(props) {
         super(props)
 
@@ -38,6 +39,7 @@ class Cart extends Component {
     // }
 
     render() {
+
             return (
                 <div>               
                     <div style={{padding:"10px"}}>
@@ -88,10 +90,9 @@ class Cart extends Component {
                     <div className="total">
                         <Link to="/address">Confirm Order</Link>
                         <h3>Total: ${this.state.cart.totalPrice}</h3>
-                    </div>
+                    </div>      
 
-
-
+                  
                     </div>
 
                 )

@@ -87,7 +87,7 @@ class CreateProducts extends Component {
                 <br></br>
                    <div className = "container">
                         <div className = "row">
-                            <div className = "card col-md-6 offset-md-3 offset-md-3">
+                            <div className = "card offset-md-3 offset-md-3">
                                 <div className = "card-body">
                                     <form>
                                         

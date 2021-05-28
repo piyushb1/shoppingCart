@@ -79,7 +79,8 @@ class MyOrders extends Component {
                                     <th>Order id</th>
                                     <th> Amount</th>
                                     <th> Date Ordered</th>
-                                    <th> Status</th>
+                                    <th> Delivery Status</th>
+                                    <th> Payment Method</th>
                                     <th> Quantity</th>
                                 </tr>
                             </thead>
@@ -92,6 +93,7 @@ class MyOrders extends Component {
                                              <td> ${item.ammountPaid}</td>
                                              <td> { item.orderDate} </td>   
                                              <td> { item.orderStatus} </td>   
+                                             <td> { item.modeOfPayment} </td>   
                                              <td> {item.quantity} </td>
                                         </tr>
                                     ))

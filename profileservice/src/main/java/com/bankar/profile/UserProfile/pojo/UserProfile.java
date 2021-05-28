@@ -34,6 +34,8 @@ public class UserProfile {
 	}
     
     
+    
+    
 	public String getProfileid() {
 		return profileid;
 	}
@@ -100,8 +102,29 @@ public class UserProfile {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+
+
+
+	public UserProfile(String profileid, String fullname, String image, String email, Long mobilenumber, String about,
+			LocalDate dateOfBirth, String gender, String role, String password, Address address) {
+		super();
+		this.profileid = profileid;
+		this.fullname = fullname;
+		this.image = image;
+		this.email = email;
+		this.mobilenumber = mobilenumber;
+		this.about = about;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.role = role;
+		this.password = password;
+		this.address = address;
+	}
 	
     
-    
+    public UserProfile() {
+    	
+    }
    
 }

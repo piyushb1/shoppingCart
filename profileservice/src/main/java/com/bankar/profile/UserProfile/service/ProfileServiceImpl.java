@@ -1,12 +1,12 @@
 package com.bankar.profile.UserProfile.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.bankar.profile.UserProfile.exception.NotFoundException;
 import com.bankar.profile.UserProfile.pojo.Role;
 import com.bankar.profile.UserProfile.pojo.UserProfile;
 import com.bankar.profile.UserProfile.repository.ProfileRepository;
@@ -54,7 +54,13 @@ public class ProfileServiceImpl implements ProfileService{
 	
 	
 	public void deleteProfile(String id) {
-		profilerepository.deleteById(id);
+		if(profilerepository.existsById(id)) {
+			profilerepository.deleteById(id);
+		}
+		else {
+			throw new NotFoundException("User does exist by id = "+id);	
+		}
+		
 	}
 	
 	
