@@ -1,13 +1,17 @@
 package com.bankar.orderservice.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bankar.orderservice.exception.ExceptionError;
 import com.bankar.orderservice.exception.NotFoundException;
+import com.bankar.orderservice.messaging.CustomMessage;
+import com.bankar.orderservice.messaging.MQConfig;
 import com.bankar.orderservice.models.Address;
 import com.bankar.orderservice.models.Cart;
 import com.bankar.orderservice.models.Items;
@@ -21,6 +25,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired private OrderRepository orderrepository;
 	@Autowired private AddressRepository addressrepository;
+	@Autowired private RabbitTemplate template;
 
 	
 	
@@ -43,6 +48,10 @@ public class OrderServiceImpl implements OrderService{
 		order.setModeOfPayment(orderinput.getModeOfPayment());
 		
 		orderrepository.insert(order);
+				
+		CustomMessage message = new CustomMessage(UUID.randomUUID().toString(), orderinput.getProfileid(), new Date());
+		template.convertAndSend(MQConfig.EXCHANGE, MQConfig.ROUTING_KEY, message);
+                
 		return order;
 	}
 	

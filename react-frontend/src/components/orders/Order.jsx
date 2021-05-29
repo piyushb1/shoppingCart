@@ -83,9 +83,7 @@ class Cart extends Component {
                                              <td> { item.productName} </td>   
                                              <td> ${item.price}</td>
                                              <td>
-                                                <button className="count" onClick={()=> this.remove(item.productid)} style={{margin:"10px"}}> - </button>
                                                 <span>{item.quantity}</span>
-                                                <button className="count" onClick={()=> this.addtoCart(item.productid)} style={{margin:"10px"}}> + </button>
                                              </td>
                                         </tr>
                                     ))

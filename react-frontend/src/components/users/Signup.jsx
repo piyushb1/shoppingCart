@@ -46,7 +46,7 @@ class Signup extends Component {
                 let userid =res.data.userid;
                 localStorage.setItem('userid',userid);
 
-                this.props.history.push('/');
+                this.props.history.push('/home');
             });
     }
     
@@ -60,7 +60,7 @@ class Signup extends Component {
 
    
     cancel(){
-        this.props.history.push('/users');
+        this.props.history.push('/home');
     }
 
     // getTitle(){

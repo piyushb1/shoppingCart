@@ -17,10 +17,6 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartRepository cartRepository;
 	
-	@Autowired
-	private RestTemplate restTemplate;
-
-	
 	
 	
 	public Cart addCart(String id) {
@@ -74,6 +70,15 @@ public class CartServiceImpl implements CartService {
 		cart = cartRepository.findBycartid(cartid);
 		
 		cart.removeItems(item.getProductid());
+		return cartRepository.save(cart);
+	}
+
+
+	public Cart emptyCart(String cartid) {
+		Cart cart = new Cart();
+		cart.setCartid(cartid);
+		
+		System.out.println("Cart is deleted for User = "+cartid);
 		return cartRepository.save(cart);
 	}
 

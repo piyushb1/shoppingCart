@@ -40,7 +40,7 @@ class App extends  React.Component {
             </form>
           </div> 
           <div className="col-lg-4 col-sm-6 col-12">
-            <div className="widgets-wrap float-md-right">
+            <div className="widgets-wrap">
               <div className="widget-header  mr-3">
                 <a href="#" className="icon icon-sm rounded-circle border"><i className="fa fa-shopping-cart" /></a>
                 <span className="badge badge-pill badge-danger notify">0</span>
@@ -134,7 +134,7 @@ class App extends  React.Component {
   <section className="section-name padding-y-sm">
     <div className="container">
       <header className="section-heading">
-        <a href="#" className="btn btn-outline-primary float-right">See all</a>
+        <a href="#" className="btn btn-outline-primary">See all</a>
         <h3 className="section-title">Popular products</h3>
       </header>
       <div className="row">

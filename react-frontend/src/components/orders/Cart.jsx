@@ -16,6 +16,7 @@ class Cart extends Component {
             item:[]
         }       
         this.addtoCart = this.addtoCart.bind(this);
+        this.remove = this.remove.bind(this);
 
     }
 
@@ -32,6 +33,15 @@ class Cart extends Component {
         CartService.addToCart(userid,productid);
     }
 
+    async remove(productid){
+        this.setState({num:0})
+        await CartService.removeitem(productid);
+        CartService.getCartById(localStorage.userid).then((res) => {
+            console.log('cart => ' + JSON.stringify(res.data));
+            this.setState({ cart: res.data});
+            this.setState({ item: this.state.cart.items });
+        });
+    }
    
 
     // componentWillUnmount() {
@@ -71,7 +81,8 @@ class Cart extends Component {
                    
                     <table className = "table table-striped table-bordered">
                             <tbody>
-                                {
+                                {this.state.item==null?
+                                <a>Your Cart is Empty, go to<a href="/home" style={{color:"blue"}}> Home Page</a></a>:
                                     this.state.item.map(item =>(this.state.num++,
                                         <tr key = {item.productid}>
                                              <td> <img src={`images/${this.state.num}.png`} alt="" style={{width:"100px"}}/></td>
@@ -87,11 +98,14 @@ class Cart extends Component {
                                 }
                             </tbody>
                         </table>
+                        {this.state.item==null?
+                        <a></a>
+                        :
                     <div className="total">
                         <Link to="/address">Confirm Order</Link>
                         <h3>Total: ${this.state.cart.totalPrice}</h3>
                     </div>      
-
+                    }
                   
                     </div>
 

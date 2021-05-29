@@ -37,6 +37,22 @@ class CartService {
         return axios.get(CART_API_BASE_URL + 'get/' + cartId);
     }
 
+    removeitem(productid){
+        ProductService.getProductById(productid).then((res) => {
+            this.product = res.data;
+
+            let item = {
+                productid: this.product.productid, 
+                productName: this.product.productName,
+                price: this.product.price,
+                quantity: 1
+            };
+            let userid = localStorage.userid;
+
+            return axios.post(CART_API_BASE_URL+'removeitem/'+userid, item);
+        });
+    }
+
     updateCart(cart, cartId){
         return axios.put(CART_API_BASE_URL + 'update/' + cartId, cart);
     }

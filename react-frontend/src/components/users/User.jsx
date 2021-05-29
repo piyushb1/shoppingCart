@@ -99,8 +99,12 @@ class User extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Gender</label>
-                                <input  className="form-control" placeholder="Enter Gender" type="text" name="lastName"
-                                                value={this.state.gender} onChange={this.changeGenderHandler} aria-describedby="emailHelp" />
+                                <select name="gender" className="form-control" placeholder="Gender" type="text" 
+                                                        value={this.state.gender} onChange={this.changeGenderHandler} aria-describedby="emailHelp">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Contact</label>

@@ -14,6 +14,7 @@ public interface CartService {
 	public double cartTotal(Cart cart);
 	public Cart addItem(String id,Items item);
 	public Cart removeItem(String cartid, Items item);
+	public Cart emptyCart(String cartid);
 	
 
 }
