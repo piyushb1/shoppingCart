@@ -68,11 +68,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
-	public String changeStatus(String status, String id) {
+	public Orders changeStatus(String id) {
 		Orders order = orderrepository.findByOrderid(id);
-		order.setOrderStatus(status);
+		order.setOrderStatus("Delivered");
 		orderrepository.save(order);
-		return status;
+		return order;
 	}
 
 

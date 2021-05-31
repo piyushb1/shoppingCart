@@ -8,9 +8,12 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import io.jsonwebtoken.ExpiredJwtException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -28,9 +31,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public final ResponseEntity<ErrorMesssage> handleAllExceptions(Forbidden ex, WebRequest request) {
 		ErrorMesssage exceptionResponse = new ErrorMesssage( ex.getMessage(),HttpStatus.NOT_FOUND, ZonedDateTime.now());
 	    return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
-	 }
-	 
-	 
+	}
+	 	 
 	
 	@ExceptionHandler(value = {NotFoundException.class})
 	public ResponseEntity<Object> handleApiRequestException(NotFoundException e){
@@ -42,10 +44,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				badrequest,
 				ZonedDateTime.now()
 				);
-		
-		
-		return new ResponseEntity<>(errorMessage,badrequest);
-		
+				
+		return new ResponseEntity<>(errorMessage,badrequest);		
 	}
 	
 	
@@ -60,7 +60,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<Object>(error,HttpStatus.NOT_FOUND);
 	}
 	
-	
 	 
 	@Override
 	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
@@ -73,6 +72,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<Object>(error,HttpStatus.NOT_FOUND);
 	}
 
+	
+	@ExceptionHandler({Unauthorized.class, ExpiredJwtException.class})
+	public final ResponseEntity<ErrorMesssage> handleAuthExceptions(ExpiredJwtException ex, WebRequest request) {
+		ErrorMesssage exceptionResponse = new ErrorMesssage( ex.getMessage(),HttpStatus.NOT_FOUND, ZonedDateTime.now());
+	    return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
 	
 
 }

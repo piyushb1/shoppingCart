@@ -32,7 +32,7 @@ function App() {
               <HeaderComponent />
                 <div className="container" style={{backgroundColor: "#edf6f9",padding: "30px" }} >
                     <Switch> 
-                          <Route path = "/" exact component = {Main}></Route>
+                          <Route path = "/" exact component = {Home}></Route>
                           <Route path = "/home" exact component = {Home}></Route>
                           <Route path = "/users" exact component = {ListUsers}></Route>
                           <Route path = "/user" exact component = {User}></Route>

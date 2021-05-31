@@ -31,6 +31,7 @@ public class OrderResource {
 	@GetMapping("/getAll")
 	public List<Orders> getAllOrders() {
 		ListOrder listorders = restTemplate.getForObject("http://localhost:8092/getAll", ListOrder.class);
+		System.out.println(listorders);
 		return listorders.getListOrder();
 	}
 	

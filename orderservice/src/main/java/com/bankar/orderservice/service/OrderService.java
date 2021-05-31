@@ -10,7 +10,7 @@ public interface OrderService {
 	
 	public List<Orders> getAllOrders();
 	public Orders placeOrder(Orders order);
-	public String changeStatus(String staus, String id);
+	public Orders changeStatus(String id);
 	public void deleteOrder(String id);
 	public List<Orders> getOrderByProfileid(String profileid);
 	public void storeAddress(Address address);

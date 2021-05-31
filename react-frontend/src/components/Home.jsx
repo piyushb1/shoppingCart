@@ -48,7 +48,7 @@ class Home extends Component {
                    this.state.products.map(product =>(this.state.num++,
                        <div className="card" key={product.productid}>
                            <Link onClick={ () => this.viewProduct(product.productid)}>
-                            <img src={`images/${this.state.num}.png`} alt=""/>
+                            <img src={`images/${product.image[0]}`} alt=""/>
                                
                            </Link>
                            <div className="content">

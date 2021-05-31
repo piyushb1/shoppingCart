@@ -38,7 +38,7 @@ export class Product extends Component {
                 {/* {
                     product.map(item =>( */}
                         <div className="details" >
-                            <img src="../images/1.png" alt=""/>
+                            <img src={`images/${item.image}`} alt=""/>
                             <div className="box">
                                 <div className="row">
                                     <h2>{item.productName}</h2>

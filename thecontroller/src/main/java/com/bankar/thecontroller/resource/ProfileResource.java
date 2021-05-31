@@ -19,7 +19,6 @@ import com.bankar.thecontroller.models.ListProfile;
 import com.bankar.thecontroller.models.UserProfile;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/profile")
 @RestController
 public class ProfileResource {
 	
@@ -28,7 +27,7 @@ public class ProfileResource {
 	
 	
 	@PreAuthorize("hasAuthority('admin')")
-	@GetMapping("/getAll")
+	@GetMapping("/getAllprofiles")
 	public List<UserProfile> getAll(){
 		ListProfile listprofile = restTemplate.getForObject("http://localhost:8094/getAll", ListProfile.class);
 		return listprofile.getListproduct();

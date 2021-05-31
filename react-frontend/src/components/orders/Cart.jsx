@@ -28,21 +28,24 @@ class Cart extends Component {
         });
     }
 
-    addtoCart(productid){
-        let userid = localStorage.userid;
-        CartService.addToCart(userid,productid);
-    }
-
-    async remove(productid){
-        this.setState({num:0})
-        await CartService.removeitem(productid);
+    refreshPage(){
         CartService.getCartById(localStorage.userid).then((res) => {
             console.log('cart => ' + JSON.stringify(res.data));
             this.setState({ cart: res.data});
             this.setState({ item: this.state.cart.items });
         });
     }
-   
+
+    addtoCart(productid){
+        let userid = localStorage.userid;
+        CartService.addToCart(userid,productid);
+        setTimeout(() => { this.refreshPage(); }, 1000);
+    }
+
+    remove(productid){
+        CartService.removeitem(productid);
+        setTimeout(() => { this.refreshPage(); }, 1000);
+    }
 
     // componentWillUnmount() {
     //     alert('The component is going to be unmounted');
@@ -85,7 +88,7 @@ class Cart extends Component {
                                 <a>Your Cart is Empty, go to<a href="/home" style={{color:"blue"}}> Home Page</a></a>:
                                     this.state.item.map(item =>(this.state.num++,
                                         <tr key = {item.productid}>
-                                             <td> <img src={`images/${this.state.num}.png`} alt="" style={{width:"100px"}}/></td>
+                                             <td> <img src={`${product.image}`} alt="" style={{width:"100px"}}/></td>
                                              <td> { item.productName} </td>   
                                              <td> ${item.price}</td>
                                              <td>

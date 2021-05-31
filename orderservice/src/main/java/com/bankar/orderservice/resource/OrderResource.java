@@ -85,9 +85,8 @@ public class OrderResource {
 	
 	
 	@PutMapping("/changeStatus/{id}")
-	public String changeOrderStatus(@RequestBody String status,@PathVariable String id) {
-		orderService.changeStatus(status,id);
-		return status;
+	public Orders changeOrderStatus(@PathVariable String id) {
+		return orderService.changeStatus(id);
 	}
 	
 	

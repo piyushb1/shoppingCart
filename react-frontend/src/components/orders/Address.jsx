@@ -130,7 +130,7 @@ class Address extends Component {
     }
 
     changeFulladdress= (event) => {
-        this.setState({fulladdress: this.state.houseNumber+ this.state.city+ this.state.state1 + this.state.pincode})
+        this.setState({fulladdress: this.state.houseNumber+', '+ this.state.city+ ', '+ this.state.state1 +', ' + this.state.pincode})
         this.setState({fulladdress: event.target.value});
     }
 

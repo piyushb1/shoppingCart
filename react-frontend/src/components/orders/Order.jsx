@@ -4,7 +4,7 @@ import OrderService from '../../services/OrderService';
 import '../css/DetailsC.css'
 import '../css/Cart.css'
 
-class Cart extends Component {
+class Order extends Component {
     constructor(props) {
         super(props)
 
@@ -106,4 +106,4 @@ class Cart extends Component {
         }
 }
 
-export default Cart;
+export default Order;
