@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.bankar.thecontroller.filters.JwtRequestFilter;
 import com.bankar.thecontroller.services.MyUserDetailsService;
@@ -53,7 +55,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 	httpSecurity.csrf().disable()
-	.cors().disable()
 	.authorizeRequests()
 	.antMatchers("/authenticate","/create","/swagger-ui/**",
 			"/v2/api-docs",
@@ -68,6 +69,22 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	.anyRequest().authenticated().and().sessionManagement()
 	.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	httpSecurity.cors();
+	}
+	
+	
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("http://localhost:3000")
+						.allowedHeaders("*")
+						.allowCredentials(true)
+						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+			}
+		};
 	}
 
 	

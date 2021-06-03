@@ -35,6 +35,11 @@ public class OrderResource {
 		return listorders.getListOrder();
 	}
 	
+	@PutMapping("/changeStatus/{id}")
+	public void changeOrderStatus(@PathVariable String id) {
+		restTemplate.put("http://localhost:8092/changeStatus/"+id, Orders.class);
+	}
+	
 	
 //	@GetMapping("/getAlla")
 //	public List<Address> getAllAddress() {

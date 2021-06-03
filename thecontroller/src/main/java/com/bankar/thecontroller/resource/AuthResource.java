@@ -26,7 +26,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000",allowedHeaders = "*")
 @RestController
 @Api( tags = "Clients")
 public class AuthResource {
